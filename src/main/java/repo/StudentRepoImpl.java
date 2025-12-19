@@ -43,8 +43,9 @@ public class StudentRepoImpl extends DbConfig implements StudentRepo{
 				s.setSid(rs.getInt(1));
 				s.setSname(rs.getString(2));
 				s.setEmail(rs.getString(3));
-				s.setPassword(rs.getString(4));
-				s.setDepartment(rs.getString(5));
+				s.setDepartment(rs.getString(4));
+				s.setMobile(rs.getString(5));
+				s.setPassword(rs.getString(6));
 				list.add(s);
 			}
 			
@@ -116,8 +117,9 @@ public class StudentRepoImpl extends DbConfig implements StudentRepo{
 				s.setSid(rs.getInt(1));
 				s.setSname(rs.getString(2));
 				s.setEmail(rs.getString(3));
-				s.setPassword(rs.getString(4));
-				s.setDepartment(rs.getString(5));
+				s.setDepartment(rs.getString(4));
+				s.setMobile(rs.getString(5));
+				s.setPassword(rs.getString(6));
 				list.add(s);
 			}
 		}
@@ -144,8 +146,9 @@ public class StudentRepoImpl extends DbConfig implements StudentRepo{
 				s.setSid(rs.getInt(1));
 				s.setSname(rs.getString(2));
 				s.setEmail(rs.getString(3));
-				s.setPassword(rs.getString(4));
-				s.setDepartment(rs.getString(5));
+				s.setDepartment(rs.getString(4));
+				s.setMobile(rs.getString(5));
+				s.setPassword(rs.getString(6));
 				list.add(s);
 			}
 		}
