@@ -241,6 +241,30 @@ body {
     document.getElementById(id).style.display = "block";
   }
 
+  function showSection(id) {
+	  document.querySelectorAll(".operation-section")
+	    .forEach(sec => sec.style.display = "none");
+	  document.getElementById(id).style.display = "block";
+	}
+
+	const params = new URLSearchParams(window.location.search);
+	const status = params.get("status");
+
+	if (status === "success") {
+	  document.getElementById("messageBox").innerHTML =
+	    `<div class="alert alert-success text-center">
+	       Student added successfully!
+	     </div>`;
+	  showSection("add");
+	}
+
+	if (status === "error") {
+	  document.getElementById("messageBox").innerHTML =
+	    `<div class="alert alert-danger text-center">
+	       Student not added!
+	     </div>`;
+	  showSection("add");
+	}
   <%if (request.getAttribute("deptStudents") != null) {%>
      showSection("dept");
   <%}%>

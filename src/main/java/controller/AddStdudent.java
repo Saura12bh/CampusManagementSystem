@@ -35,9 +35,9 @@ public class AddStdudent extends HttpServlet {
         boolean result = ss.addStudent(s);
 
         if (result) {
-            response.sendRedirect("StudentOperation.html?status=success");
+            response.sendRedirect("StudentOperation.jsp?status=success");
         } else {
-            response.sendRedirect("StudentOperation.html?status=error");
+            response.sendRedirect("StudentOperation.jsp?status=error");
         }
     }
 
