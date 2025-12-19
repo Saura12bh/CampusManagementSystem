@@ -5,21 +5,22 @@ import lombok.Data;
 @Data
 public class Student {
 private int sid;
-private String name;
+private String sname;
 private String email;
 private String password;
 private String department;
+private String mobile;
 public int getSid() {
 	return sid;
 }
 public void setSid(int sid) {
 	this.sid = sid;
 }
-public String getName() {
-	return name;
+public String getSname() {
+	return sname;
 }
-public void setName(String name) {
-	this.name = name;
+public void setSname(String sname) {
+	this.sname = sname;
 }
 public String getEmail() {
 	return email;
@@ -38,6 +39,12 @@ public String getDepartment() {
 }
 public void setDepartment(String department) {
 	this.department = department;
+}
+public String getMobile() {
+	return mobile;
+}
+public void setMobile(String mobile) {
+	this.mobile = mobile;
 }
 
 }
