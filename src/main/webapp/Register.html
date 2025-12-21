@@ -68,7 +68,7 @@
           <img src="./img/studentLogin.jpeg" class="img-fluid" alt="" />
         </div>
         <div class="col-12 col-md-6 col-lg-6">
-          <form>
+          <form action="StudentLoginServlet" method="post" name="frm">
             <div class="mb-3">
               <label for="username" class="form-label">Enter Email Id </label>
               <input
@@ -76,25 +76,18 @@
                 class="form-control"
                 id="username"
                 autocomplete="off"
+                name="email"
                 autofocus
               />
             </div>
-            <div class="mb-3">
-              <label for="useremail" class="form-label">Enter Email </label>
-              <input
-                type="email"
-                class="form-control"
-                id="useremail"
-                autocomplete="off"
-              />
-            </div>
-            <div class="mb-3">
+             <div class="mb-3">
               <label for="userpass" class="form-label">Password</label>
               <input
                 type="password"
                 class="form-control"
                 id="userpass"
                 autocomplete="off"
+                name="password"
               />
             </div>
             <div class="mb-3">
@@ -104,11 +97,10 @@
                 class="form-control"
                 id="userpass1"
                 autocomplete="off"
+                
               />
             </div>
-            <a class="btn btn-outline-success" onclick="saveUserData()"
-              >Login
-            </a>
+          	<button class="btn btn-primary" type="submit">Login</button>
             <a class="btn btn-outline-primary" onclick="clearFields()"
               >Clear
             </a>
