@@ -45,6 +45,8 @@ body {
 				View All Events</button>
 			<button class="btn btn-success m-2" onclick="showSection('upcoming')">
 				Upcoming Events</button>
+				<button class="btn btn-success m-2" onclick="showSection('pdf')">
+				Download Pdf</button>
 		</div>
 
 		<!-- ================= ADD EVENT ================= -->
@@ -162,6 +164,12 @@ body {
 			<%
 			}
 			%>
+		</div>
+		<div id="pdf" class="operation-section">
+		<form action="EventPdfServlet" method="get">
+    <button type="submit" class="btn btn-primary">Download Event PDF</button>
+	</form>
+
 		</div>
 
 	</div>

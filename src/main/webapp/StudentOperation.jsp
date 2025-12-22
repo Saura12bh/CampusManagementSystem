@@ -47,6 +47,8 @@ body {
 				List by Department</button>
 			<button class="btn btn-info m-2" onclick="showSection('all')">
 				List All Students</button>
+			<button class="btn btn-info m-2" onclick="showSection('pdf')">
+				Download Pdf </button>
 		</div>
 
 		<!-- ================= ADD STUDENT ================= -->
@@ -235,8 +237,12 @@ body {
 			}
 			%>
 		</div>
+	<div id="pdf" class="operation-section">
+		<form action="StudentPdfServlet" method="get">
+    <button type="submit" class="btn btn-primary">Download Student PDF</button>
+	</form>
 
-
+		</div>
 	</div>
 <script>
 function showSection(id) {
