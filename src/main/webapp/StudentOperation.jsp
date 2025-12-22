@@ -207,6 +207,7 @@ body {
 						<th>Department</th>
 						<th>Mobile Number</th>
 						<th>Password</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -220,6 +221,10 @@ body {
 						<td><%=s.getDepartment()%></td>
 						<td><%=s.getMobile()%></td>
 						<td><%=s.getPassword()%></td>
+							<td><a href="UpdateStudentServlet?studentId=<%=s.getSid()%>"
+							class="btn btn-success btn-sm"> Update </a> <a
+							href="DeleteStudentServlet?studentId=<%=s.getSid()%>"
+							class="btn btn-danger btn-sm"> Delete </a></td>
 					</tr>
 					<%
 					}
@@ -233,42 +238,57 @@ body {
 
 
 	</div>
+<script>
+function showSection(id) {
+  document.querySelectorAll(".operation-section")
+    .forEach(sec => sec.style.display = "none");
+  document.getElementById(id).style.display = "block";
+}
 
-	<script>
-  function showSection(id) {
-    document.querySelectorAll(".operation-section")
-      .forEach(sec => sec.style.display = "none");
-    document.getElementById(id).style.display = "block";
-  }
+const params = new URLSearchParams(window.location.search);
+const status = params.get("status");
 
-  function showSection(id) {
-	  document.querySelectorAll(".operation-section")
-	    .forEach(sec => sec.style.display = "none");
-	  document.getElementById(id).style.display = "block";
-	}
+if (status === "success") {
+  document.getElementById("messageBox").innerHTML =
+    `<div class="alert alert-success text-center">
+       Student added successfully!
+     </div>`;
+  showSection("add");
+}
 
-	const params = new URLSearchParams(window.location.search);
-	const status = params.get("status");
+if (status === "updated") {
+  document.getElementById("messageBox").innerHTML =
+    `<div class="alert alert-success text-center">
+       Student updated successfully!
+     </div>`;
+  showSection("all");
+}
 
-	if (status === "success") {
-	  document.getElementById("messageBox").innerHTML =
-	    `<div class="alert alert-success text-center">
-	       Student added successfully!
-	     </div>`;
-	  showSection("add");
-	}
+if (status === "deleted") {
+  document.getElementById("messageBox").innerHTML =
+    `<div class="alert alert-success text-center">
+       Student deleted successfully!
+     </div>`;
+  showSection("all");
+}
 
-	if (status === "error") {
-	  document.getElementById("messageBox").innerHTML =
-	    `<div class="alert alert-danger text-center">
-	       Student not added!
-	     </div>`;
-	  showSection("add");
-	}
-  <%if (request.getAttribute("deptStudents") != null) {%>
-     showSection("dept");
-  <%}%>
+if (status === "error") {
+  document.getElementById("messageBox").innerHTML =
+    `<div class="alert alert-danger text-center">
+       Operation failed!
+     </div>`;
+  showSection("add");
+}
+
+<% if (request.getAttribute("deptStudents") != null) { %>
+  showSection("dept");
+<% } %>
+
+<% if (request.getAttribute("allStudents") != null) { %>
+  showSection("all");
+<% } %>
 </script>
+
 
 </body>
 </html>

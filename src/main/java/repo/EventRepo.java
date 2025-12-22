@@ -7,4 +7,5 @@ public interface EventRepo {
 	public List<Event> getUpComingEvents();
 	public boolean isDeleteEvent(int eid);
 	public boolean isUpdateEvent(Event m);
+	public Event getEventById(int eventId);
 }

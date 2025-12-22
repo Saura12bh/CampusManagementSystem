@@ -9,4 +9,5 @@ public interface StudentRepo {
 	public boolean updateStudent(Student m);
 	public List<Student> searchByEmail(String email);
 	public List<Student> searchByDept(String dept);
+	public Student getStudentById(int studentId);
 }

@@ -12,9 +12,22 @@ public class Event {
 	private int capacity;
 	private int registered;
 	private int available;
+	public Event(int eid, String name, Date edate, String venue, int capacity) {
+        this.eid = eid;
+        this.name = name;
+        this.edate = edate;
+        this.venue = venue;
+        this.capacity = capacity;
+    }
+
+	public Event() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getEid() {
 		return eid;
 	}
+	
 	public void setEid(int eid) {
 		this.eid = eid;
 	}

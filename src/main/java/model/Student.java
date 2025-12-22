@@ -10,6 +10,19 @@ private String email;
 private String password;
 private String department;
 private String mobile;
+public Student(int sid, String sname, String email,String password,String department, String mobile) {
+    this.sid = sid;
+    this.sname = sname;
+    this.email = email;
+    this.password=password;
+    this.department=department;
+    this.mobile = mobile;
+}
+
+public Student() {
+	// TODO Auto-generated constructor stub
+}
+
 public int getSid() {
 	return sid;
 }

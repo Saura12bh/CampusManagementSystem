@@ -34,11 +34,12 @@ public class StudentLoginServlet extends HttpServlet {
 
 	            ResultSet rs = ps.executeQuery();
 	            if (rs.next()) {
-	            	            	
-	            	
+	
 	            	int studentId=rs.getInt("sid");
 	            	String username=rs.getString("sname");
+	            	//yethe session create kela
 	                HttpSession session = request.getSession();
+	                
 	                session.setAttribute("studentEmail",email);
 	                session.setAttribute("studentName",username);
 	                session.setAttribute("studentId",studentId);

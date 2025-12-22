@@ -39,4 +39,10 @@ public class StudentServiceImpl implements StudentService{
 		return sr.searchByDept(dept);
 	}
 
+	@Override
+	public Student getStudentById(int studentId) {
+		// TODO Auto-generated method stub
+		return sr.getStudentById(studentId);
+	}
+
 }

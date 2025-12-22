@@ -82,11 +82,15 @@ public class StudentRepoImpl extends DbConfig implements StudentRepo{
 	@Override
 	public boolean updateStudent(Student s) {
 	  try {
-		  ps=con.prepareStatement("update student set name=?,email=?,password=?,department=? where sid=?");
-		  ps.setString(1, s.getSname());
-		  ps.setString(2, s.getEmail());
-		  ps.setString(3,s.getPassword());
-		  ps.setString(4, s.getDepartment());
+		  String sql = "UPDATE student SET sname=?, email=?, password=?, department=?, mobile=? WHERE sid=?";
+		   ps = con.prepareStatement(sql);
+		   ps.setString(1, s.getSname());
+		   ps.setString(2, s.getEmail());
+		   ps.setString(3, s.getPassword());
+		   ps.setString(4, s.getDepartment());
+		   ps.setString(5, s.getMobile());   // ✅ MUST
+		   ps.setInt(6, s.getSid());
+
 		  int v=ps.executeUpdate();
 		  if(v>0)
 		  {
@@ -159,6 +163,36 @@ public class StudentRepoImpl extends DbConfig implements StudentRepo{
 
 		}
 		return list;
+	}
+
+	@Override
+	public Student getStudentById(int studentId) {
+		 Student s = null;
+
+	        try {
+	            String sql = "SELECT * FROM student WHERE sid = ?";
+	             ps = con.prepareStatement(sql);
+	            ps.setInt(1, studentId);
+
+	             rs = ps.executeQuery();
+
+	            if (rs.next()) {
+	                s = new Student(
+	                    rs.getInt("sid"),
+	                    rs.getString("sname"),
+	                    rs.getString("email"),
+	                    rs.getString("password"),
+	                    rs.getString("department"),
+	                    rs.getString("mobile")
+	                );
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	        return s;
+	    
 	}
 
 }

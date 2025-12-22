@@ -33,4 +33,10 @@ EventRepo er=new EventRepoImpl();
 		return er.isUpdateEvent(m);
 	}
 
+	@Override
+	public Event getEventById(int eventId) {
+		// TODO Auto-generated method stub
+		return er.getEventById(eventId);
+	}
+
 }

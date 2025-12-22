@@ -130,4 +130,32 @@ public class EventRepoImpl extends DbConfig implements EventRepo{
 			return false;
 		}
 	}
+
+	@Override
+	public Event getEventById(int eventId) {
+		 Event e = null;
+
+	        try {
+
+	            String sql = "SELECT * FROM event WHERE eid = ?";
+	             ps = con.prepareStatement(sql);
+	            ps.setInt(1, eventId);
+
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	                e = new Event(
+	                        rs.getInt("eid"),
+	                        rs.getString("name"),
+	                        rs.getDate("edate"),
+	                        rs.getString("venue"),
+	                        rs.getInt("capacity")
+	                );
+	            }
+
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
+
+	        return e;
+	}
 }

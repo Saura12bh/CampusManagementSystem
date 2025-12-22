@@ -88,6 +88,7 @@ body {
 						<th>Date</th>
 						<th>Venue</th>
 						<th>Capacity</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -100,6 +101,10 @@ body {
 						<td><%=e.getEdate()%></td>
 						<td><%=e.getVenue()%></td>
 						<td><%=e.getCapacity()%></td>
+						<td><a href="UpdateEventServlet?eventId=<%=e.getEid()%>"
+							class="btn btn-success btn-sm"> Update </a> <a
+							href="DeleteEventServlet?eventId=<%=e.getEid()%>"
+							class="btn btn-danger btn-sm"> Delete </a></td>
 					</tr>
 					<%
 					}
@@ -184,6 +189,21 @@ function showSection(id) {
 	     </div>`;
 	  showSection("add");
 	}
+	if (status === "updated") {
+		  document.getElementById("messageBox").innerHTML =
+		    `<div class="alert alert-success text-center">
+		       Event Update successfully!
+		     </div>`;
+		  showSection("all");
+		}
+	
+	if (status === "deleted") {
+		  document.getElementById("messageBox").innerHTML =
+		    `<div class="alert alert-success text-center">
+		       Event Deleted successfully!
+		     </div>`;
+		  showSection("all");
+		}
 
 	if (status === "error") {
 	  document.getElementById("messageBox").innerHTML =
