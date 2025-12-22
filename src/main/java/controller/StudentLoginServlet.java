@@ -34,13 +34,14 @@ public class StudentLoginServlet extends HttpServlet {
 
 	            ResultSet rs = ps.executeQuery();
 	            if (rs.next()) {
+	            	            	
 	            	
-	            	int sid=rs.getInt("sid");
-	            	String name=rs.getString("sname");
+	            	int studentId=rs.getInt("sid");
+	            	String username=rs.getString("sname");
 	                HttpSession session = request.getSession();
-	                session.setAttribute("StudentEmail",email);
-	                session.setAttribute("StudentName",name);
-	                session.setAttribute("StudentId",sid);
+	                session.setAttribute("studentEmail",email);
+	                session.setAttribute("studentName",username);
+	                session.setAttribute("studentId",studentId);
 	                response.sendRedirect("StudentDashboard.jsp");
 	            } else {
 	                response.sendRedirect("Register.html");
