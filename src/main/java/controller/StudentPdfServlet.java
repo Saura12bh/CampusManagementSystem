@@ -16,29 +16,27 @@ import java.sql.PreparedStatement;
 public class StudentPdfServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=students.pdf");
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try {
-            // DB connection
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/cmpevent","root","Saurabh2003"
-            );
+			Connection con = DriverManager.getConnection(
+				"jdbc:mysql://localhost:3306/cmpevent","root","Saurabh2003");
 
-            String query = "SELECT * FROM student";
-            PreparedStatement ps = con.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
+			PreparedStatement psmt =
+				con.prepareStatement("SELECT * FROM student");
+			ResultSet rs = psmt.executeQuery();
 
-            // PDF generate
-            StudentPdfDownload.generateStudentPdf(rs, "students.pdf");
+			String path = System.getProperty("user.home")
+				+ "\\Downloads\\students.pdf";
 
-            // PDF Browser मध्ये show करायचं असल्यास FileOutputStream नाही तर
-            // directly response.getOutputStream() वापरू शकतो (Advanced)
+			StudentPdfDownload.generateStudentPdf(rs, path);
+			
+			response.sendRedirect("StudentOperation.jsp");
+			
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			System.out.println("Error is " + e);
+		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

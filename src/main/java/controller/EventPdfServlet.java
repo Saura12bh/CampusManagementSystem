@@ -14,23 +14,27 @@ import java.sql.*;
 public class EventPdfServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 response.setContentType("application/pdf");
-	        response.setHeader("Content-Disposition", "attachment; filename=events.pdf");
-	        try {
-	            Class.forName("com.mysql.cj.jdbc.Driver");
-	            Connection con = DriverManager.getConnection(
-	                "jdbc:mysql://localhost:3306/cmpevent","root","Saurabh2003"
-	            );
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-	            String query = "SELECT * FROM event";
-	            PreparedStatement ps = con.prepareStatement(query);
-	            ResultSet rs = ps.executeQuery();
+			Connection con = DriverManager.getConnection(
+				"jdbc:mysql://localhost:3306/cmpevent","root","Saurabh2003");
 
-	            StudentPdfDownload.generateEventPdf(rs, "events.pdf");
+			PreparedStatement psmt =
+				con.prepareStatement("SELECT * FROM event");
+			ResultSet rs = psmt.executeQuery();
 
-	        } catch (Exception e) {
-	        	   e.printStackTrace();
-	        }
+			String path = System.getProperty("user.home")
+				+ "\\Downloads\\events.pdf";
+
+			StudentPdfDownload.generateStudentPdf(rs, path);
+			
+			response.sendRedirect("EventOperationDashboard.jsp");
+			
+
+		} catch (Exception e) {
+			System.out.println("Error is " + e);
+		}
 	        }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
